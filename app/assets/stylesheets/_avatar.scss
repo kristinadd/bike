@@ -1,0 +1,30 @@
+.avatar {
+  width: 50px;             /* Set the width of the avatar */
+  height: 50px;            /* Set the height of the avatar */
+  border-radius: 50%;      /* Make the avatar round */
+  object-fit: cover;       /* Ensure the image fits within the circle */
+}
+
+.big-avatar {
+  width: 160px;             /* Set the width of the avatar */
+  height: 160px;            /* Set the height of the avatar */
+  border-radius: 50%;      /* Make the avatar round */
+  object-fit: cover;       /* Ensure the image fits within the circle */
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.email-text {
+  font-size: 16px;    /* Adjust the font size for the email */
+  text-align: right;  /* Align the email text to the right */
+}

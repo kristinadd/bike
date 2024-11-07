@@ -1,6 +1,16 @@
+
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby "3.3.0"
+
+# OpenAI gem
+gem "ruby-openai"
+
+# parse json 
+gem "json"
+
+# for scss styles
+gem 'sassc-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -33,7 +43,7 @@ gem "jbuilder"
 # gem "kredis"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -47,6 +57,9 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do
@@ -65,3 +78,13 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+#  for rspec
+gem "ruby-lsp-rails"
+gem "ruby-lsp"
+gem "ruby-lsp-rspec"
+
+# for background processing 
+gem "sidekiq"
+
+gem 'carrierwave'

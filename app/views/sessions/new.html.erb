@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="col-md-12 mb-3 mt-5">
+          <div class="card green-card">
+            <div class="card-body">
+             <h2 class="text-center">Log in</h2>
+              <p>If you don't have a profile, you can create one <%= link_to 'here', new_user_path %>.</p>
+              <%= form_with model: @user, url: create_session_path do |form|  %>
+                <% if flash[:error] %>
+                    <%= flash[:error] %>
+                <% end %>
+
+                <p>
+                  <% @user.errors.each do |error| %>
+                  <%= error.full_message %>
+                  <% end %>
+                </p>
+                <p>
+                  <%= form.label :email %><br>
+                  <%= form.text_field :email, placeholder: 'e.g. alex@g.com', class: "form-control" %><br>
+
+                  <%= form.label :password %><br>
+                  <%= form.password_field :password,  placeholder: 'password', class: "form-control" %><br>
+                <%= form.submit 'Log in', class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

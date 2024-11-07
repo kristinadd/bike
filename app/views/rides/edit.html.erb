@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="col-md-12 mb-3 mt-5">
+          <div class="card green-card">
+            <div class="card-body">
+              <h2 class="text-center">Edit the Ride:</h2>
+              <%= form_with model: @ride, url: update_ride_path(id: @ride.id) do |form|  %>
+                <% if flash[:error] %>
+                    <%= flash[:error] %>
+                <% end %>
+
+                <p>
+                  <% @ride.errors.each do |error| %>
+                  <%= error.full_message %>
+                  <% end %>
+                </p>
+                <p>
+                  <%= form.text_field :name, class: "form-control" %>
+                </p>
+
+                <p>
+                  <%= form.collection_select :start_city_id, City.all, :id, :name, { prompt: 'Select Start Location' }, class: "form-control" %>
+                </p>
+
+                <p>
+                  <%= form.collection_select :end_city_id, City.all, :id, :name, { prompt: 'Select End Location' }, class: "form-control" %>
+                </p>
+
+                <hr>
+
+                <%= form.submit "Submit", class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

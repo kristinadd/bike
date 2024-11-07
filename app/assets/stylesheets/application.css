@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ /* The application.css file serves as a manifest, which means it can include other CSS or SCSS files. 
+ The purpose of the manifest file is to control the order and inclusion of stylesheets when they are compiled. */
+
+ @import "buttons";
+ @import "cards";
+ @import "nav-bar";
+ @import "background-color";
+ @import "avatar";
+ 

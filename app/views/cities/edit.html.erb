@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="col-md-12 mb-3 mt-5">
+          <div class="card green-card">
+            <div class="card-body">
+              <h2 class="text-center">Edit the City:</h2>
+              <%= form_with model: @city, url: update_city_path(id: @city.id) do |form|  %>
+                <% if flash[:error] %>
+                    <%= flash[:error] %>
+                <% end %>
+
+                <p>
+                  <% @city.errors.each do |error| %>
+                  <%= error.full_message %>
+                  <% end %>
+                </p>
+
+                 <p>
+                  <%= form.text_field :name, class: "form-control" %>
+                </p>
+
+                <%= form.submit "Submit", class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -10,15 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_08_080627) do
-  create_table "rides", force: :cascade do |t|
-    t.float "distance"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.string "destination"
-    t.string "mood"
+ActiveRecord::Schema[7.1].define(version: 2024_10_11_121442) do
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
+    t.index ["name"], name: "index_cities_on_name", unique: true
   end
 
+  create_table "reactions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "ride_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reaction_type"
+    t.index ["ride_id"], name: "index_reactions_on_ride_id"
+    t.index ["user_id", "ride_id"], name: "index_reactions_on_user_id_and_ride_id", unique: true
+    t.index ["user_id"], name: "index_reactions_on_user_id"
+  end
+
+  create_table "rides", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "start_city_id"
+    t.integer "end_city_id"
+    t.json "recommendation"
+    t.integer "distance"
+    t.integer "user_id"
+    t.index ["end_city_id"], name: "index_rides_on_end_city_id"
+    t.index ["start_city_id"], name: "index_rides_on_start_city_id"
+    t.index ["user_id"], name: "index_rides_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email", null: false
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.boolean "is_admin"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "rides", "cities", column: "end_city_id"
+  add_foreign_key "rides", "cities", column: "start_city_id"
+  add_foreign_key "rides", "users", on_delete: :cascade
+  
+  # add fk on_delete: :cascade for reactions, users, and rides
 end

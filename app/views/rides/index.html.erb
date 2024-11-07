@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <% @rides.each do |ride| %>
+        <div class="col-md-12 mb-3 mt-5">
+          <div class="card green-card">
+            <div class="card-body" id="ride-<%=ride.id%>">
+              <div class="d-flex justify-content-end">
+              <% if ride.user == current_user %>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-settings dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    . . .
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <%= link_to "Edit the Ride", edit_ride_path(id: ride.id), class: "dropdown-item" %>
+                    </li>
+                    <li>
+                      <%= link_to "Delete", destroy_ride_path(id: ride.id), method: :delete, class: "dropdown-item" %>
+                    </li>
+                  </ul>
+                </div>
+              <% end %>
+              </div>
+              <p>
+                <div style="text-align: center;">
+                  <h2>
+                    <%= ride.name %><br>
+                  </h2>
+                </div>
+                <%= image_tag(ride.user.avatar.url, class: 'avatar') if ride.user&.avatar? %>
+                <%= ride.user.name if ride.present? %>
+                <hr>
+                <strong> Start: </strong> <%= ride.start_city.name%><br>
+                <strong> End: </strong> <%= ride.end_city.name%><br>
+                <strong> Distance: </strong> <%= ride.distance%> km<br>
+
+                <hr>
+                <strong style="display: block; text-align: center;"> Restaurants on the way to <%= ride.end_city.name%><br>
+                </strong> <% ride.recommendation.each do |restaurant| %><br>
+                <strong> ✦ <%= restaurant["name"]%></strong><br>
+                <%= restaurant["description"]%>
+                <% end %>
+                <hr>
+                <div class="d-flex align-items-center">
+                  <p class="me-3">❤️ <%= love_reactions(ride) %></p>
+                  <p>👏 <%= celebrate_reactions(ride) %></p>
+                </div>
+                <hr>
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-react dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    React
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <%= button_to "❤️ Love", create_reaction_path(ride_id: ride.id, reaction_type: 'love'), method: :post, class: "dropdown-item", data: { turbo: false } %>
+                    </li>
+                    <li>
+                      <%= button_to "👏 Celebrate", create_reaction_path(ride_id: ride.id, reaction_type: 'celebrate'), method: :post, class: "dropdown-item", data: { turbo: false } %>
+                    </li>
+                  </ul>
+                </div>
+
+                <%= ride.reaction_status(current_user) %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
+    </div>
+  </div>
+</div>
