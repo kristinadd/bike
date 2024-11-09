@@ -50,8 +50,4 @@ class CitiesController < ApplicationController
   def find_city
     @city = City.find(params[:id])
   end
-
-  # def add_emoji
-  #   @city.update(name: @city.name + " 🇬🇧")
-  # end
 end
