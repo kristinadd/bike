@@ -14,19 +14,6 @@ class City < ActiveRecord::Base
     service.call(self)
   end
 
-  def add_flag_to_name
-    update(name: name + set_flag)    # self.update(name: self.name + " 🇬🇧")
-  end
-
-  def set_flag
-    return unless name.present?
-    if ["London", "Cardiff", "Edinburgh", "Oxford", "Cambridge"].any? { |city| name.include?(city) }     # if name.include?(["London", "Cardiff", "Edinburgh", "Oxford", "Cambridge"])
-      " 🇬🇧"
-    else
-      " 🏁"
-    end
-  end
-
   def count_words
     if description.present?
       description.split.count
