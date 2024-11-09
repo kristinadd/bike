@@ -88,3 +88,5 @@ gem "ruby-lsp-rspec"
 gem "sidekiq"
 
 gem 'carrierwave'
+
+gem 'dotenv-rails'
