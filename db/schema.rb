@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_121442) do
     t.datetime "updated_at", null: false
     t.string "reaction_type"
     t.index ["ride_id"], name: "index_reactions_on_ride_id"
-    t.index ["user_id", "ride_id"], name: "index_reactions_on_user_id_and_ride_id", unique: true
+    t.index ["user_id", "ride_id"], name: "index_reactions_on_user_id_and_ride_id", unique: true # allow only one reaction
     t.index ["user_id"], name: "index_reactions_on_user_id"
   end
 

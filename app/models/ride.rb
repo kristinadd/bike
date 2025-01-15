@@ -4,7 +4,8 @@ class Ride < ApplicationRecord
   belongs_to :start_city, class_name: 'City'
   belongs_to :end_city, class_name: 'City'
   belongs_to :user, optional: true
-  # Without optional: true: Rails assumes that the association is mandatory, meaning that a Ride must have a User. If you try to create a Ride without a user_id, Rails will trigger a validation error, even if the column is nullable in the database.
+  # Without optional: true: Rails assumes that the association is mandatory, meaning that a Ride must have a User. If you try to create a Ride without a user_id, 
+  # Rails will trigger a validation error, even if the column is nullable in the database.
   # With optional: true: You explicitly tell Rails that this association is optional, allowing the Ride to be created without a user_id.
   validates :name, :start_city, :end_city, presence: true
 
